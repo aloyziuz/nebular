@@ -1,17 +1,18 @@
 {
-  "name": "@nebular/theme",
-  "version": "9.0.3",
-  "description": "@nebular/theme",
+  "name": "@aloysius-software-factory/nebular-theme",
+  "version": "9.0.4",
+  "description": "fork from @nebular/theme",
+
   "author": "akveo",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akveo/nebular.git"
+    "url": "git+https://github.com/aloyziuz/nebular.git"
   },
   "bugs": {
-    "url": "https://github.com/akveo/nebular/issues"
+    "url": "https://github.com/aloyziuz/nebular/issues"
   },
-  "homepage": "https://github.com/akveo/nebular#readme",
+  "homepage": "https://github.com/aloyziuz/nebular#readme",
   "keywords": [
     "angular",
     "typescript",
