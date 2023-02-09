@@ -43,7 +43,7 @@ export function registerPrebuiltTheme(options: Schema) {
   return updateWorkspace(async (workspace: WorkspaceDefinition) => {
     const project = getProjectFromWorkspace(workspace, options.project);
 
-    const themePath = `./node_modules/@nebular/theme/styles/prebuilt/${options.theme}.css`;
+    const themePath = `./node_modules/@aloysius-software-factory/nebular-theme/styles/prebuilt/${options.theme}.css`;
 
     addStyleToTarget(project, 'build', themePath);
   });
