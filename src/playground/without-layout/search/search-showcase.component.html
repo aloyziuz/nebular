@@ -1,6 +1,7 @@
 <nb-layout>
+  <ng-template #formTemplate> this is additional form template </ng-template>
   <nb-layout-header fixed>
-    <nb-search type="rotate-layout"></nb-search>
+    <nb-search type="rotate-layout" [additionalSearchFormTemplate]="formTemplate"></nb-search>
   </nb-layout-header>
   <nb-sidebar>Sidebar</nb-sidebar>
 
@@ -8,9 +9,8 @@
     <nb-card accent="info">
       <nb-card-header>Interstellar Cloud</nb-card-header>
       <nb-card-body>
-        A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-        Originally, nebula was a name for any diffuse astronomical object,
-        including galaxies beyond the Milky Way.
+        A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases. Originally, nebula was a
+        name for any diffuse astronomical object, including galaxies beyond the Milky Way.
       </nb-card-body>
     </nb-card>
   </nb-layout-column>
