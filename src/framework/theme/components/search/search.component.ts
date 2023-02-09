@@ -66,6 +66,7 @@ import { NbOverlayRef, NbPortalDirective } from '../cdk/overlay/mapping';
             />
           </div>
           <span class="info">{{ hint }}</span>
+          <ng-template [ngTemplateOutlet]="this.additionalTemplate"></ng-template>
         </form>
       </div>
     </div>
@@ -80,6 +81,7 @@ export class NbSearchFieldComponent implements OnChanges, AfterViewInit {
   static readonly TYPE_MODAL_DROP = 'modal-drop';
   static readonly TYPE_MODAL_HALF = 'modal-half';
 
+  @Input() additionalTemplate: TemplateRef<any>;
   @Input() type: string;
   @Input() placeholder: string;
   @Input() hint: string;
@@ -244,6 +246,7 @@ export type NbSearchType =
       (search)="search($event)"
       (searchInput)="emitInput($event)"
       (close)="emitDeactivate()"
+      [additionalTemplate]="this.additionalSearchFormTemplate"
     >
     </nb-search-field>
   `,
@@ -254,6 +257,7 @@ export class NbSearchComponent implements OnInit, OnDestroy {
   showSearchField = false;
 
   @Input() searchButtonTemplate: TemplateRef<any>;
+  @Input() additionalSearchFormTemplate: TemplateRef<any>;
 
   /**
    * Tags a search with some ID, can be later used in the search service

@@ -1,6 +1,7 @@
 <nb-layout>
+  <ng-template #formTemplate> this is additional form template </ng-template>
   <nb-layout-header fixed>
-    <nb-search type="rotate-layout"></nb-search>
+    <nb-search type="rotate-layout" [additionalSearchFormTemplate]="formTemplate"></nb-search>
   </nb-layout-header>
   <nb-sidebar>Sidebar</nb-sidebar>
 
