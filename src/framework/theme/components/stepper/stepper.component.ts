@@ -10,6 +10,8 @@ import {
   EventEmitter,
   HostBinding,
   Input,
+  OnDestroy,
+  OnInit,
   Output,
   QueryList,
   TemplateRef,
@@ -17,6 +19,7 @@ import {
 import { convertToBoolProperty, NbBooleanInput } from '../helpers';
 import { NB_STEPPER } from './stepper-tokens';
 import { NbStepComponent } from './step.component';
+import { Subscription } from 'rxjs';
 
 export type NbStepperOrientation = 'vertical' | 'horizontal';
 
@@ -123,7 +126,7 @@ export interface NbStepChangeEvent {
   templateUrl: './stepper.component.html',
   providers: [{ provide: NB_STEPPER, useExisting: NbStepperComponent }],
 })
-export class NbStepperComponent {
+export class NbStepperComponent implements OnInit, OnDestroy {
   /**
    * Selected step index
    */
@@ -217,6 +220,33 @@ export class NbStepperComponent {
   }
 
   @ContentChildren(NbStepComponent) steps: QueryList<NbStepComponent>;
+
+  public IsMovingForward = false;
+  public IsMovingBackward = false;
+  private stepChangeSub: Subscription | undefined;
+  private readonly animationLengthMs = 500;
+
+  ngOnInit(): void {
+    this.stepChangeSub = this.stepChange.subscribe((changeEvent) => {
+      if (changeEvent.previouslySelectedIndex > changeEvent.index) {
+        this.IsMovingBackward = true;
+        setTimeout(() => {
+          this.IsMovingBackward = false;
+        }, this.animationLengthMs);
+      } else if (changeEvent.previouslySelectedIndex < changeEvent.index) {
+        this.IsMovingForward = true;
+        setTimeout(() => {
+          this.IsMovingForward = false;
+        }, this.animationLengthMs);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.stepChangeSub) {
+      this.stepChangeSub.unsubscribe();
+    }
+  }
 
   /**
    * Navigate to next step
