@@ -93,6 +93,7 @@ export class NbSearchFieldComponent implements OnChanges, AfterViewInit {
 
   @ViewChild('searchInput') inputElement: ElementRef<HTMLInputElement>;
 
+  //#region class host bindings
   @HostBinding('class.show')
   get showClass() {
     return this.show;
@@ -132,6 +133,7 @@ export class NbSearchFieldComponent implements OnChanges, AfterViewInit {
   get modalHalf() {
     return this.type === NbSearchFieldComponent.TYPE_MODAL_HALF;
   }
+  //#endregion
 
   ngOnChanges({ show }: SimpleChanges) {
     const becameHidden = !show.isFirstChange() && show.currentValue === false;
@@ -151,7 +153,8 @@ export class NbSearchFieldComponent implements OnChanges, AfterViewInit {
   }
 
   submitSearch(term) {
-    if (term) {
+    //allow empty string but not null or undefined
+    if (term != null && term != undefined) {
       this.search.emit(term);
     }
   }
