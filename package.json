@@ -10,6 +10,7 @@
   "homepage": "https://github.com/akveo/nebular#readme",
   "repository": "git+https://github.com/akveo/nebular.git",
   "scripts": {
+    "build:theme": "ng build theme && sass dist/theme/styles/prebuilt:dist/theme/styles/prebuilt --load-path=node_modules --style=compressed --no-source-map && cd dist/theme && npm pack",
     "ng": "ng",
     "prestart": "npm run gen:playground",
     "start": "ng serve",
