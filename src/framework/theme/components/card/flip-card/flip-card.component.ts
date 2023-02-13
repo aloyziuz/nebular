@@ -1,4 +1,6 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+
+export type toggleFlipType = 'hover' | 'click';
 
 /**
  *
@@ -60,15 +62,15 @@ import { Component, Input, HostBinding } from '@angular/core';
   styleUrls: ['./flip-card.component.scss'],
   template: `
     <div class="flipcard-body">
-      <div class="front-container">
+      <div class="front-container" (mouseenter)="toggle('hover')">
         <ng-content select="nb-card-front"></ng-content>
-        <a *ngIf="showToggleButton" class="flip-button" (click)="toggle()">
+        <a *ngIf="showToggleButton" class="flip-button" (click)="toggle('click')">
           <nb-icon icon="chevron-left-outline" pack="nebular-essentials" aria-hidden="true"></nb-icon>
         </a>
       </div>
-      <div class="back-container">
+      <div class="back-container" (mouseleave)="toggle('hover')">
         <ng-content select="nb-card-back"></ng-content>
-        <a *ngIf="showToggleButton" class="flip-button" (click)="toggle()">
+        <a *ngIf="showToggleButton" class="flip-button" (click)="toggle('click')">
           <nb-icon icon="chevron-left-outline" pack="nebular-essentials" aria-hidden="true"></nb-icon>
         </a>
       </div>
@@ -90,7 +92,21 @@ export class NbFlipCardComponent {
    */
   @Input() showToggleButton = true;
 
-  toggle() {
-    this.flipped = !this.flipped;
+  /**
+   * Determines whether to flip card on hover or not
+   * @type {boolean}
+   */
+  @Input() flipCardOnHover = true;
+
+  toggle(type: toggleFlipType) {
+    const flipCard = () => (this.flipped = !this.flipped);
+
+    //if being hovered and flip on hover is true, flip it
+    //always flip on icon click
+    if (type === 'hover' && this.flipCardOnHover) {
+      flipCard();
+    } else {
+      flipCard();
+    }
   }
 }

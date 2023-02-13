@@ -1,4 +1,5 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, HostListener } from '@angular/core';
+import { toggleFlipType } from '../flip-card/flip-card.component';
 
 /**
  *
@@ -62,7 +63,7 @@ import { Component, Input, HostBinding } from '@angular/core';
     <div class="second-card-container">
       <ng-content select="nb-card-back"></ng-content>
     </div>
-    <a *ngIf="showToggleButton" class="reveal-button" (click)="toggle()">
+    <a *ngIf="showToggleButton" class="reveal-button" (click)="toggle('click')">
       <nb-icon icon="chevron-down-outline" pack="nebular-essentials" aria-hidden="true"></nb-icon>
     </a>
   `,
@@ -82,7 +83,31 @@ export class NbRevealCardComponent {
    */
   @Input() showToggleButton = true;
 
-  toggle() {
-    this.revealed = !this.revealed;
+  /**
+   * Determines whether to flip card on hover or not
+   * @type {boolean}
+   */
+  @Input() flipCardOnHover = true;
+
+  @HostListener('mouseenter')
+  OnMouseEnter() {
+    this.toggle('hover');
+  }
+
+  @HostListener('mouseleave')
+  OnMouseLeave() {
+    this.toggle('hover');
+  }
+
+  toggle(type: toggleFlipType) {
+    const flipcard = () => (this.revealed = !this.revealed);
+
+    //if being hovered and flip on hover is true, flip it
+    //always flip on icon click
+    if (type === 'hover' && this.flipCardOnHover) {
+      flipcard();
+    } else {
+      flipcard();
+    }
   }
 }
