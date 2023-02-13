@@ -235,12 +235,12 @@ export type NbSearchType =
   styleUrls: ['styles/search.component.scss'],
   template: `
     <ng-template #defaultSearchButtonTemplate>
-      <button #searchButton class="start-search" nbButton ghost shape="round" status="primary">
+      <button class="start-search" nbButton ghost>
         <nb-icon icon="search-outline" pack="nebular-essentials"></nb-icon>
       </button>
     </ng-template>
 
-    <div (click)="emitActivate()">
+    <div #searchButton (click)="emitActivate()">
       <ng-container [ngTemplateOutlet]="this.searchButtonTemplate || defaultSearchButtonTemplate"></ng-container>
     </div>
     <nb-search-field
