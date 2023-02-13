@@ -240,7 +240,7 @@ export type NbSearchType =
       </button>
     </ng-template>
 
-    <div (click)="emitActivate()">
+    <div #searchButton (click)="emitActivate()">
       <ng-container [ngTemplateOutlet]="this.searchButtonTemplate || defaultSearchButtonTemplate"></ng-container>
     </div>
 
