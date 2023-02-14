@@ -53,8 +53,7 @@
     flex: 1;
     height: fit-content;
     width: fit-content;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
 
     .flip-button {
       cursor: pointer;
