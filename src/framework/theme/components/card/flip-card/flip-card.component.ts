@@ -105,7 +105,7 @@ export class NbFlipCardComponent {
     //always flip on icon click
     if (type === 'hover' && this.flipCardOnHover) {
       flipCard();
-    } else {
+    } else if (type === 'click') {
       flipCard();
     }
   }
