@@ -25,12 +25,6 @@
     </div>
   </ng-container>
 </div>
-<div
-  class="step-content horizontal"
-  [ngClass]="{
-    next: this.IsMovingForward,
-    prev: this.IsMovingBackward
-  }"
->
+<div class="step-content" [@transitionAnim]="this.stepChange | async">
   <ng-container [ngTemplateOutlet]="selected?.content"></ng-container>
 </div>
