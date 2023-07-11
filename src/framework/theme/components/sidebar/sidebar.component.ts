@@ -23,6 +23,8 @@ import { convertToBoolProperty, NbBooleanInput } from '../helpers';
 import { NbThemeService } from '../../services/theme.service';
 import { NbMediaBreakpoint } from '../../services/breakpoints.service';
 import { NbSidebarService, getSidebarState$, getSidebarResponsiveState$ } from './sidebar.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { transform } from 'typescript';
 
 export type NbSidebarState = 'expanded' | 'collapsed' | 'compacted';
 export type NbSidebarResponsiveState = 'mobile' | 'tablet' | 'pc';
@@ -136,6 +138,26 @@ export class NbSidebarFooterComponent {}
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('leftSidebar', [
+      state(
+        'expanded',
+        style({
+          opacity: 100,
+          transform: 'translateX(0)',
+        }),
+      ),
+      state(
+        'collapsed',
+        style({
+          opacity: 0,
+          transform: 'translateX(-100%)',
+        }),
+      ),
+      transition('expanded => collapsed', [animate('0.2s')]),
+      transition('collapsed => expanded', [animate('0.2s')]),
+    ]),
+  ],
 })
 export class NbSidebarComponent implements OnInit, OnDestroy {
   protected readonly responsiveValueChange$: Subject<boolean> = new Subject<boolean>();
@@ -144,6 +166,15 @@ export class NbSidebarComponent implements OnInit, OnDestroy {
   protected destroy$ = new Subject<void>();
 
   containerFixedValue: boolean = true;
+
+  //animation
+  @HostBinding('@leftSidebar') get leftSidebar() {
+    return this.state;
+  }
+  @HostBinding('@.disabled') get disabled() {
+    console.log(this.left);
+    return !this.left;
+  }
 
   @HostBinding('class.fixed') fixedValue: boolean = false;
   @HostBinding('class.right') rightValue: boolean = false;
