@@ -37,7 +37,7 @@ export type NbSidebarResponsiveState = 'mobile' | 'tablet' | 'pc';
  */
 @Component({
     selector: 'nb-sidebar-header',
-    template: ` <ng-content></ng-content> `,
+    template: '<ng-content></ng-content>',
     standalone: false
 })
 export class NbSidebarHeaderComponent {}
@@ -140,27 +140,27 @@ export class NbSidebarFooterComponent {}
     </div>
   `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
-  animations: [
-    trigger('leftSidebar', [
-      state(
-        'expanded',
-        style({
-          opacity: 100,
-          transform: 'translateX(0)',
-        }),
-      ),
-      state(
-        'collapsed',
-        style({
-          opacity: 0,
-          transform: 'translateX(-100%)',
-        }),
-      ),
-      transition('expanded => collapsed', [animate('0.2s')]),
-      transition('collapsed => expanded', [animate('0.2s')]),
-    ]),
-  ],
+    standalone: false,
+    animations: [
+      trigger('leftSidebar', [
+        state(
+          'expanded',
+          style({
+            opacity: 100,
+            transform: 'translateX(0)',
+          }),
+        ),
+        state(
+          'collapsed',
+          style({
+            opacity: 0,
+            transform: 'translateX(-100%)',
+          }),
+        ),
+        transition('expanded => collapsed', [animate('0.2s')]),
+        transition('collapsed => expanded', [animate('0.2s')]),
+      ]),
+    ],
 })
 export class NbSidebarComponent implements OnInit, OnDestroy {
   protected readonly responsiveValueChange$: Subject<boolean> = new Subject<boolean>();
