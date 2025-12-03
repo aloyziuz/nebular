@@ -1,3 +1,5 @@
+@use '../../../styles/theming' as *;
+
 /**
  * @license
  * Copyright Akveo. All Rights Reserved.
@@ -16,6 +18,8 @@
   min-width: 0;
   perspective: 1200px;
   position: relative;
+  background-color: nb-theme(card-background-color);
+  border: nb-theme(card-border-width) nb-theme(card-border-style) nb-theme(card-border-color);
 }
 
 :host-context(.flipped) {
@@ -48,15 +52,17 @@
   .back-container {
     flex: 1;
     height: fit-content;
-    overflow: auto;
+    width: fit-content;
+    overflow: hidden;
 
     .flip-button {
       cursor: pointer;
       position: absolute;
       right: 0;
-      bottom: 0;
+      bottom: -20px;
       opacity: 1;
       transition: opacity 0s 0.15s;
+      max-height: 20px;
     }
   }
 

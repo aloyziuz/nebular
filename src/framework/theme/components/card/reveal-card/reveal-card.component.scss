@@ -1,7 +1,10 @@
+@use '../../../styles/theming' as *;
+
 :host {
   display: block;
   position: relative;
   overflow: hidden;
+  border: nb-theme(card-border-width) nb-theme(card-border-style) nb-theme(card-border-color);
 
   .second-card-container {
     position: absolute;
