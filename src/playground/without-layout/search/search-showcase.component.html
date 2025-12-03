@@ -1,12 +1,13 @@
 <nb-layout>
   <ng-template #formTemplate> this is additional form template </ng-template>
-  <ng-template #btnTemplate>
-    <button>this is custom button</button>
+  <ng-template #BtnTemplate>
+    <button class="start-search" nbButton ghost shape="round" status="primary">This is custom search button</button>
   </ng-template>
+
   <nb-layout-header fixed>
     <nb-search
       type="rotate-layout"
-      [searchButtonTemplate]="btnTemplate"
+      [searchButtonTemplate]="BtnTemplate"
       [additionalSearchFormTemplate]="formTemplate"
     ></nb-search>
   </nb-layout-header>
