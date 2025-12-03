@@ -71,6 +71,7 @@ import { NbOverlayRef, NbPortalDirective } from '../cdk/overlay/mapping';
       </div>
     </div>
   `,
+  standalone: false,
 })
 export class NbSearchFieldComponent implements OnChanges, AfterViewInit {
   static readonly TYPE_MODAL_ZOOMIN = 'modal-zoomin';
@@ -257,6 +258,7 @@ export type NbSearchType =
     >
     </nb-search-field>
   `,
+  standalone: false,
 })
 export class NbSearchComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();

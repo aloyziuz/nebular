@@ -122,24 +122,13 @@ export interface NbStepChangeEvent {
  * stepper-step-content-padding:
  */
 @Component({
-  selector: 'nb-stepper',
-  styleUrls: ['./stepper.component.scss'],
-  templateUrl: './stepper.component.html',
-  providers: [{ provide: NB_STEPPER, useExisting: NbStepperComponent }],
-  animations: [
-    trigger('transitionAnim', [
-      transition(
-        '* => *',
-        sequence([
-          style({ opacity: 1, transform: 'scale(1)' }),
-          animate('100ms cubic-bezier(0.785, 0.135, 0.15, 0.86)', style({ opacity: 0, transform: 'scale(0.2)' })),
-          animate('200ms cubic-bezier(0.785, 0.135, 0.15, 0.86)', style({ opacity: 1, transform: 'scale(1)' })),
-        ]),
-      ),
-    ]),
-  ],
+    selector: 'nb-stepper',
+    styleUrls: ['./stepper.component.scss'],
+    templateUrl: './stepper.component.html',
+    providers: [{ provide: NB_STEPPER, useExisting: NbStepperComponent }],
+    standalone: false
 })
-export class NbStepperComponent implements OnInit, OnDestroy {
+export class NbStepperComponent {
   /**
    * Selected step index
    */

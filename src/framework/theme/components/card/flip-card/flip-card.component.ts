@@ -58,9 +58,9 @@ export type toggleFlipType = 'hover' | 'click';
  *
  */
 @Component({
-  selector: 'nb-flip-card',
-  styleUrls: ['./flip-card.component.scss'],
-  template: `
+    selector: 'nb-flip-card',
+    styleUrls: ['./flip-card.component.scss'],
+    template: `
     <div class="flipcard-body">
       <div class="front-container" (mouseenter)="toggle('hover')">
         <ng-content select="nb-card-front"></ng-content>
@@ -76,6 +76,7 @@ export type toggleFlipType = 'hover' | 'click';
       </div>
     </div>
   `,
+    standalone: false
 })
 export class NbFlipCardComponent {
   /**

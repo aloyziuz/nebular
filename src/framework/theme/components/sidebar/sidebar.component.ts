@@ -36,8 +36,9 @@ export type NbSidebarResponsiveState = 'mobile' | 'tablet' | 'pc';
  * placed at the very top of the sidebar outside of the scroll area.
  */
 @Component({
-  selector: 'nb-sidebar-header',
-  template: ` <ng-content></ng-content> `,
+    selector: 'nb-sidebar-header',
+    template: ` <ng-content></ng-content> `,
+    standalone: false
 })
 export class NbSidebarHeaderComponent {}
 
@@ -48,8 +49,9 @@ export class NbSidebarHeaderComponent {}
  * placed at the very bottom of the sidebar outside of the scroll area.
  */
 @Component({
-  selector: 'nb-sidebar-footer',
-  template: ` <ng-content></ng-content> `,
+    selector: 'nb-sidebar-footer',
+    template: ` <ng-content></ng-content> `,
+    standalone: false
 })
 export class NbSidebarFooterComponent {}
 
@@ -126,9 +128,9 @@ export class NbSidebarFooterComponent {}
  * sidebar-scrollbar-width:
  */
 @Component({
-  selector: 'nb-sidebar',
-  styleUrls: ['./sidebar.component.scss'],
-  template: `
+    selector: 'nb-sidebar',
+    styleUrls: ['./sidebar.component.scss'],
+    template: `
     <div class="main-container" [class.main-container-fixed]="containerFixedValue">
       <ng-content select="nb-sidebar-header"></ng-content>
       <div class="scrollable" (click)="onClick($event)">
@@ -137,7 +139,8 @@ export class NbSidebarFooterComponent {}
       <ng-content select="nb-sidebar-footer"></ng-content>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
   animations: [
     trigger('leftSidebar', [
       state(
